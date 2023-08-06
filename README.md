@@ -10,25 +10,25 @@ Execute cookiecutter with the chosen template directory:
 cookiecutter https://github.com/petr-korobeinikov/cookiecutters/ --directory <directory-name>
 ```
 
-### Go
+### Go for Leetcode
 
 ```shell
 cookiecutter https://github.com/petr-korobeinikov/cookiecutters/ --directory leetcode-go
 ```
 
-### Kotlin
+### Kotlin for Leetcode
 
 ```shell
 cookiecutter https://github.com/petr-korobeinikov/cookiecutters/ --directory leetcode-kotlin
 ```
 
-### Rust
+### Rust for Leetcode
 
 ```shell
 cookiecutter https://github.com/petr-korobeinikov/cookiecutters/ --directory leetcode-rust
 ```
 
-### Scala
+### Scala for Leetcode
 
 ```shell
 cookiecutter https://github.com/petr-korobeinikov/cookiecutters/ --directory leetcode-scala
