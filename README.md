@@ -1,5 +1,7 @@
 # cookiecutters
 
+Cookiecutters for various projects.
+
 ## Usage
 
 ```shell
