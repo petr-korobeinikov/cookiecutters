@@ -9,3 +9,14 @@ cookiecutter https://github.com/petr-korobeinikov/cookiecutters/ --directory <di
 # E.g. for Go project:
 cookiecutter https://github.com/petr-korobeinikov/cookiecutters/ --directory leetcode-go
 ```
+
+## Install `cookiecutter`
+
+The recommended way is to use `pipx`:
+
+```shell
+pip install pipx
+pipx install cookiecutter
+```
+
+See more instructions in the official repo: https://github.com/cookiecutter/cookiecutter
