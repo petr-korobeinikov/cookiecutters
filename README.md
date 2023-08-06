@@ -8,8 +8,17 @@ Cookiecutters for various projects.
 # Execute cookiecutter with the chosen template directory:
 cookiecutter https://github.com/petr-korobeinikov/cookiecutters/ --directory <directory-name>
 
-# E.g. for Go project:
+# E.g. for Leetcode Go project:
 cookiecutter https://github.com/petr-korobeinikov/cookiecutters/ --directory leetcode-go
+
+# E.g. for Leetcode Kotlin project:
+cookiecutter https://github.com/petr-korobeinikov/cookiecutters/ --directory leetcode-kotlin
+
+# E.g. for Leetcode Rust project:
+cookiecutter https://github.com/petr-korobeinikov/cookiecutters/ --directory leetcode-rust
+
+# E.g. for Leetcode Scala project:
+cookiecutter https://github.com/petr-korobeinikov/cookiecutters/ --directory leetcode-scala
 ```
 
 ## Install `cookiecutter`
