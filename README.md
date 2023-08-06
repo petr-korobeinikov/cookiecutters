@@ -4,20 +4,33 @@ Cookiecutters for various projects.
 
 ## Usage
 
+Execute cookiecutter with the chosen template directory:
+
 ```shell
-# Execute cookiecutter with the chosen template directory:
 cookiecutter https://github.com/petr-korobeinikov/cookiecutters/ --directory <directory-name>
+```
 
-# E.g. for Leetcode Go project:
+### Go
+
+```shell
 cookiecutter https://github.com/petr-korobeinikov/cookiecutters/ --directory leetcode-go
+```
 
-# E.g. for Leetcode Kotlin project:
+### Kotlin
+
+```shell
 cookiecutter https://github.com/petr-korobeinikov/cookiecutters/ --directory leetcode-kotlin
+```
 
-# E.g. for Leetcode Rust project:
+### Rust
+
+```shell
 cookiecutter https://github.com/petr-korobeinikov/cookiecutters/ --directory leetcode-rust
+```
 
-# E.g. for Leetcode Scala project:
+### Scala
+
+```shell
 cookiecutter https://github.com/petr-korobeinikov/cookiecutters/ --directory leetcode-scala
 ```
 
