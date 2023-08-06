@@ -2,6 +2,7 @@
     "template": [
         "Leetcode Kotlin (leetcode-kotlin)",
         "Leetcode Rust (leetcode-rust)",
-        "Leetcode Go (leetcode-go)"
+        "Leetcode Go (leetcode-go)",
+        "Leetcode Scala (leetcode-scala)"
     ]
 }
