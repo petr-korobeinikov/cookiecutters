@@ -1,5 +1,6 @@
 {
     "template": [
-        "Leetcode Kotlin (./leetcode-kotlin)"
+        "Leetcode Kotlin (./leetcode-kotlin)",
+        "Leetcode Rust (./leetcode-rust)"
     ]
 }
