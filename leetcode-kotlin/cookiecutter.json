@@ -1,10 +1,19 @@
 {
-	"slug": "",
-	"title": "",
-	"link": "",
-	"__prompts__": {
-		"slug": "Slug",
-		"title": "Title",
-		"link": "Link"
-	}
+  "slug": "",
+  "title": "",
+  "link": "",
+  "test_framework": [
+    "assertk",
+    "kotest"
+  ],
+  "__prompts__": {
+    "slug": "Slug",
+    "title": "Title",
+    "link": "Link",
+    "test_framework": {
+      "__prompt__": "Choose a test framework",
+      "assertk": "assertk",
+      "kotest": "kotest"
+    }
+  }
 }
