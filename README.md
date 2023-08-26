@@ -34,6 +34,12 @@ cookiecutter https://github.com/petr-korobeinikov/cookiecutters/ --directory lee
 cookiecutter https://github.com/petr-korobeinikov/cookiecutters/ --directory leetcode-scala
 ```
 
+### Swift for Leetcode
+
+```shell
+cookiecutter https://github.com/petr-korobeinikov/cookiecutters/ --directory leetcode-swift
+```
+
 ## Install `cookiecutter`
 
 The recommended way is to use `pipx`:

@@ -3,6 +3,7 @@
         "Leetcode Kotlin (leetcode-kotlin)",
         "Leetcode Rust (leetcode-rust)",
         "Leetcode Go (leetcode-go)",
-        "Leetcode Scala (leetcode-scala)"
+        "Leetcode Scala (leetcode-scala)",
+        "Leetcode Swift (leetcode-swift)"
     ]
 }
