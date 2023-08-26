@@ -7,7 +7,7 @@ import kotlin.test.Test
 
 class SolutionTest {
   @Test
-  fun intToRoman() {
+  fun solution() {
     val sut = Solution()
 
     tableOf("expected", "given")
