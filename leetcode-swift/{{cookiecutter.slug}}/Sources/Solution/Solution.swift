@@ -1,7 +1,7 @@
 import Then
 
 class Solution {
-    func solution() -> Bool {
+    func solution(_: Int) -> Bool {
         return true
     }
 }
