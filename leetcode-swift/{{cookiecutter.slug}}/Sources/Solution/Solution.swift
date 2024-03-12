@@ -1,7 +1,7 @@
 import Then
 
 class Solution {
-    func solution(_: Int) -> Bool {
+    @_optimize(speed) func solution(_: Int) -> Bool {
         return true
     }
 }
