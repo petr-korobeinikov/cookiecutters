@@ -19,18 +19,22 @@ class SolutionTest {
 }
 {% elif cookiecutter.test_framework == "kotest" %}
 import io.kotest.core.spec.style.FunSpec
-import io.kotest.data.row
+import io.kotest.datatest.withData
 import io.kotest.matchers.equals.shouldBeEqual
 
 class SolutionTest : FunSpec({
-  val sut = Solution()
+  context("solution") {
+    data class TestCase(val expected: Boolean, val given: Boolean)
 
-  listOf(
-    row("foo", "bar", "baz"),
-  ).forEach {
-    test("${it.a} should be equal to ${it.b} + ${it.c}") {
-      it.a.shouldBeEqual(it.b + it.c)
+    withData(
+      TestCase(true, false),
+      TestCase(true, true),
+    ) { (expected, _) ->
+      val sut = Solution()
+
+      sut.solution() shouldBeEqual expected
     }
   }
 })
 {% endif %}
+
