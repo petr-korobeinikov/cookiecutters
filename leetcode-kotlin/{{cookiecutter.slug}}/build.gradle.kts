@@ -1,5 +1,5 @@
 plugins {
-    id("org.jetbrains.kotlin.jvm") version "2.2.21"
+    id("org.jetbrains.kotlin.jvm") version "2.1.10"
     {% if cookiecutter.test_framework == "kotest" %}
     id("io.kotest") version "6.0.4"
     {% endif %}
