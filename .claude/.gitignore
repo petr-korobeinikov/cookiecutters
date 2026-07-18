@@ -1,0 +1,8 @@
+# Skills installed via `npx skills add` — managed by the CLI, not committed.
+/skills/
+
+# Local-only Claude Code settings (per-machine permissions, etc.) — never share.
+/settings.local.json
+
+# Runtime state written by the harness (scheduled tasks, etc.) — never commit.
+/*.lock

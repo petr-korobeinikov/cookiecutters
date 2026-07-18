@@ -1,0 +1,11 @@
+[settings]
+disable_backends = ["ubi", "asdf"]
+lockfile = true
+# Install Python CLIs (pipx backend) through uv/uvx instead of pipx.
+pipx.uvx = true
+
+[tools]
+python = "3.14.6"
+uv = "0.9.22"
+# Build cookiecutter's venv against the pinned Python, not whatever uv picks by default.
+"pipx:cookiecutter" = { version = "2.7.1", uvx_args = "--python 3.14.6" }
