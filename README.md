@@ -40,6 +40,12 @@ cookiecutter https://github.com/petr-korobeinikov/cookiecutters/ --directory lee
 cookiecutter https://github.com/petr-korobeinikov/cookiecutters/ --directory leetcode-swift
 ```
 
+## Leetcode environment
+
+Leetcode runs each language on a specific toolchain version.
+Before relying on a local run, check the current versions against the official Leetcode documentation:
+https://support.leetcode.com/hc/en-us/articles/360011833974-What-are-the-environments-for-the-programming-languages
+
 ## Install `cookiecutter`
 
 The recommended way is to use `pipx`:
