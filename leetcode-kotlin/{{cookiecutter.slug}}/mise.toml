@@ -1,0 +1,6 @@
+[settings]
+disable_backends = ["ubi", "asdf"]
+lockfile = true
+
+[tools]
+java = "temurin-17.0.19+10"
