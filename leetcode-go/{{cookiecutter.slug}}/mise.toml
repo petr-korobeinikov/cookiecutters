@@ -1,0 +1,6 @@
+[settings]
+disable_backends = ["ubi", "asdf"]
+lockfile = true
+
+[tools]
+go = "1.23.12"
