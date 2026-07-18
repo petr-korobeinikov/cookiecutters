@@ -1,0 +1,10 @@
+[settings]
+disable_backends = ["ubi", "asdf"]
+lockfile = true
+
+[tools]
+java = "temurin-17.0.19+10"
+# sbt via the github backend: the official sbt launcher (no bundled JDK), fetched with
+# checksum + SLSA/attestation verification. Avoids conda:sbt, which drags in a second
+# conda-forge JDK. sbt reads scalaVersion from build.sbt (3.3.1) and downloads it.
+"github:sbt/sbt" = "1.12.14"
