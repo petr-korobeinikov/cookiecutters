@@ -1,0 +1,6 @@
+[settings]
+disable_backends = ["ubi", "asdf"]
+lockfile = true
+
+[tools]
+rust = "1.88.0"
