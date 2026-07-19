@@ -22,6 +22,23 @@ cookiecutter https://github.com/petr-korobeinikov/cookiecutters/ --directory lee
 cookiecutter https://github.com/petr-korobeinikov/cookiecutters/ --directory leetcode-kotlin
 ```
 
+### PostgreSQL for LeetCode
+
+```shell
+cookiecutter https://github.com/petr-korobeinikov/cookiecutters/ --directory leetcode-postgresql
+```
+
+Spins up PostgreSQL 16 via Docker Compose. Put the problem schema and sample data in `init/schema.sql` (loaded on container startup) and write the query in `solution.sql`:
+
+```shell
+cd <slug>
+docker compose up -d
+docker compose exec -T postgres psql -U leetcode -d leetcode < solution.sql
+docker compose down
+```
+
+Supplementary notes (deep-dives on a SQL function, a planner parameter, etc.) go in a `reference/` subfolder — one topic per Markdown file — added per problem when needed.
+
 ### Rust for LeetCode
 
 ```shell
