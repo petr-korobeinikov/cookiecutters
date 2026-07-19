@@ -65,11 +65,17 @@ https://support.leetcode.com/hc/en-us/articles/360011833974-What-are-the-environ
 
 ## Install `cookiecutter`
 
-The recommended way is to use `pipx`:
+`cookiecutter` is pinned in `mise.toml` at the repo root,
+so [mise](https://mise.jdx.dev) provides it —
+no manual install needed.
+From a clone of this repo, run:
 
 ```shell
-pip install pipx
-pipx install cookiecutter
+mise install
 ```
 
-See more instructions in the official repo: https://github.com/cookiecutter/cookiecutter
+That fetches the pinned `cookiecutter` (and the Python it runs on)
+into an isolated environment.
+With mise activated in your shell,
+`cookiecutter` is then on your `PATH`;
+otherwise prefix commands with `mise exec --`.
