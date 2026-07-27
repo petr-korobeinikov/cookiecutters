@@ -1,0 +1,113 @@
+{
+  "version": 1,
+  "skills": {
+    "act": {
+      "source": "petr-korobeinikov/skills",
+      "sourceType": "github",
+      "skillPath": "skills/act/SKILL.md",
+      "computedHash": "8993c3b4bb6761b55f27ccf86e3bab32d8378719313dbec692207ad666386efd"
+    },
+    "actionlint": {
+      "source": "petr-korobeinikov/skills",
+      "sourceType": "github",
+      "skillPath": "skills/actionlint/SKILL.md",
+      "computedHash": "cb41b62442b83712b21f6cd0a2330e1ab4c48c7fd80ad2c3b8968fbd8b04e450"
+    },
+    "dependency-audit": {
+      "source": "petr-korobeinikov/skills",
+      "sourceType": "github",
+      "skillPath": "skills/dependency-audit/SKILL.md",
+      "computedHash": "6c96e193c5e7ce497db1b13ecacff81f56e02b8af30f42edcedf97f9562f02e9"
+    },
+    "fd": {
+      "source": "petr-korobeinikov/skills",
+      "sourceType": "github",
+      "skillPath": "skills/fd/SKILL.md",
+      "computedHash": "5541b8b37c80000fc56e574624eca3e6eb0f7340f471eb4d05e7f90331fd3986"
+    },
+    "git-flow-next": {
+      "source": "petr-korobeinikov/skills",
+      "sourceType": "github",
+      "skillPath": "skills/git-flow-next/SKILL.md",
+      "computedHash": "466695e0c039767f5d4160fb9fce2624d818944f019dcff50e2b7e43c1be563f"
+    },
+    "jo": {
+      "source": "petr-korobeinikov/skills",
+      "sourceType": "github",
+      "skillPath": "skills/jo/SKILL.md",
+      "computedHash": "c773b9bc8651c1fea8a505432d865b1df2eae08189b427024eed1f7fcb2d3fff"
+    },
+    "mise": {
+      "source": "petr-korobeinikov/skills",
+      "sourceType": "github",
+      "skillPath": "skills/mise/SKILL.md",
+      "computedHash": "290aa5562c1add893526406ab28b50f406b2f90c1d6fd617370f286fe6b54e5d"
+    },
+    "mktemp-d": {
+      "source": "petr-korobeinikov/skills",
+      "sourceType": "github",
+      "skillPath": "skills/mktemp-d/SKILL.md",
+      "computedHash": "2bb53334b45ad911e2e662f87474911ba4f74783fde878f4a38a8b4656091997"
+    },
+    "npx-skills": {
+      "source": "petr-korobeinikov/skills",
+      "sourceType": "github",
+      "skillPath": "skills/npx-skills/SKILL.md",
+      "computedHash": "aeacd03a03db529a6b01a2111d21a00e3489c6f0f2066b5dd63bb06cc5ed8da5"
+    },
+    "roast": {
+      "source": "petr-korobeinikov/skills",
+      "sourceType": "github",
+      "skillPath": "skills/roast/SKILL.md",
+      "computedHash": "d2bff3b327810a54f72d4b92aef066e22a8ccc414f12ab77c39efdd287f832ce"
+    },
+    "sembr": {
+      "source": "petr-korobeinikov/skills",
+      "sourceType": "github",
+      "skillPath": "skills/sembr/SKILL.md",
+      "computedHash": "c21e4aead102d5f73d5f781f843c1c24532aa5fcd4a04f4b908acff7857cba91"
+    },
+    "shell-snippet-fmt": {
+      "source": "petr-korobeinikov/skills",
+      "sourceType": "github",
+      "skillPath": "skills/shell-snippet-fmt/SKILL.md",
+      "computedHash": "fd736a08ec6d17004671acedd5cf328ac9b592fdc4929ab72607371396e004ab"
+    },
+    "skill-new": {
+      "source": "petr-korobeinikov/skills",
+      "sourceType": "github",
+      "skillPath": "skills/skill-new/SKILL.md",
+      "computedHash": "c166c06c1ad4e7150a2fc0b72b39858f0ba4c8f26346beb075c9107ef1b4533a"
+    },
+    "ssh-audit": {
+      "source": "petr-korobeinikov/skills",
+      "sourceType": "github",
+      "skillPath": "skills/ssh-audit/SKILL.md",
+      "computedHash": "269244171cafb917cae9f93b13b5e436cac378ccb54ad8ab650a82d97cab3e0c"
+    },
+    "tee": {
+      "source": "petr-korobeinikov/skills",
+      "sourceType": "github",
+      "skillPath": "skills/tee/SKILL.md",
+      "computedHash": "5f5a2c22713075f9032e60d0a4f1b4d2b4fa2f56c909f46734995ddf606fd317"
+    },
+    "vcs-commit-msg": {
+      "source": "petr-korobeinikov/skills",
+      "sourceType": "github",
+      "skillPath": "skills/vcs-commit-msg/SKILL.md",
+      "computedHash": "f5199a97fd8b12c58352e7d1e7802ea24369e6722a2999d4c7809de880ccc504"
+    },
+    "vcs-identity-check": {
+      "source": "petr-korobeinikov/skills",
+      "sourceType": "github",
+      "skillPath": "skills/vcs-identity-check/SKILL.md",
+      "computedHash": "4e2474f4651f88fee6a0459250a0d99c06bf182af70a1b47de521e08cefb1d93"
+    },
+    "which": {
+      "source": "petr-korobeinikov/skills",
+      "sourceType": "github",
+      "skillPath": "skills/which/SKILL.md",
+      "computedHash": "5a23eaa018c6c3fb3663803771ec4c8bcba82d9963636f0544cc5af4e8fa8c0e"
+    }
+  }
+}

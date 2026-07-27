@@ -5,6 +5,7 @@
         "LeetCode PostgreSQL (leetcode-postgresql)",
         "LeetCode Rust (leetcode-rust)",
         "LeetCode Scala (leetcode-scala)",
-        "LeetCode Swift (leetcode-swift)"
+        "LeetCode Swift (leetcode-swift)",
+        "Spec Driven Development :: OpenSpec (sdd-openspec)"
     ]
 }

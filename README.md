@@ -10,6 +10,26 @@ Execute cookiecutter with the chosen template directory:
 cookiecutter https://github.com/petr-korobeinikov/cookiecutters/ --directory <directory-name>
 ```
 
+### Spec Driven Development :: OpenSpec
+
+```shell
+cookiecutter https://github.com/petr-korobeinikov/cookiecutters/ --directory sdd-openspec
+```
+
+Scaffolds a spec-driven-development project built on [OpenSpec](https://github.com/Fission-AI/OpenSpec),
+driven entirely through Claude Code
+(the `/opsx:*` commands and `openspec-*` skills — no other AI-tool integration).
+A post-generation hook stands the project up automatically via [mise](https://mise.jdx.dev):
+it materializes the pinned toolchain
+(Node — LTS — for the OpenSpec CLI, the OpenSpec CLI itself, and git-flow-next),
+runs `openspec init --tools claude`,
+and initializes the classic Gitflow branch model
+(`main` + `develop`, feature branches rebased onto `develop`).
+
+Skills pinned in `skills-lock.json` aren't committed —
+Claude Code restores them from the lockfile on the first session
+(the `npx skills` workflow).
+
 ### Go for LeetCode
 
 ```shell

@@ -1,0 +1,11 @@
+[settings]
+disable_backends = ["ubi", "asdf"]
+lockfile = true
+
+[tools]
+node = "lts"
+"aqua:gittower/git-flow-next" = "1.1.0"
+"npm:@fission-ai/openspec" = "1.6.0"
+
+[env]
+OPENSPEC_TELEMETRY = "0"

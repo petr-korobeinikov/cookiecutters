@@ -1,0 +1,12 @@
+# Skills under .claude/skills/ come from two sources:
+#   • `npx skills add`  — tracked in skills-lock.json, restored by the CLI → NOT committed
+#   • OpenSpec (`openspec init/update`) — no lockfile → committed, like .claude/commands/opsx
+# So: ignore all skills, then re-include the OpenSpec-generated ones (openspec-* prefix).
+/skills/*
+!/skills/openspec-*/
+
+# Local-only Claude Code settings (per-machine permissions, etc.) — never share.
+/settings.local.json
+
+# Runtime state written by the harness (scheduled tasks, etc.) — never commit.
+/*.lock
