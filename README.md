@@ -30,19 +30,19 @@ Skills pinned in `skills-lock.json` aren't committed —
 Claude Code restores them from the lockfile on the first session
 (the `npx skills` workflow).
 
-### Go for LeetCode
+### LeetCode :: Go
 
 ```shell
 cookiecutter https://github.com/petr-korobeinikov/cookiecutters/ --directory leetcode-go
 ```
 
-### Kotlin for LeetCode
+### LeetCode :: Kotlin
 
 ```shell
 cookiecutter https://github.com/petr-korobeinikov/cookiecutters/ --directory leetcode-kotlin
 ```
 
-### PostgreSQL for LeetCode
+### LeetCode :: PostgreSQL
 
 ```shell
 cookiecutter https://github.com/petr-korobeinikov/cookiecutters/ --directory leetcode-postgresql
@@ -59,19 +59,19 @@ docker compose down
 
 Supplementary notes (deep-dives on a SQL function, a planner parameter, etc.) go in a `reference/` subfolder — one topic per Markdown file — added per problem when needed.
 
-### Rust for LeetCode
+### LeetCode :: Rust
 
 ```shell
 cookiecutter https://github.com/petr-korobeinikov/cookiecutters/ --directory leetcode-rust
 ```
 
-### Scala for LeetCode
+### LeetCode :: Scala
 
 ```shell
 cookiecutter https://github.com/petr-korobeinikov/cookiecutters/ --directory leetcode-scala
 ```
 
-### Swift for LeetCode
+### LeetCode :: Swift
 
 ```shell
 cookiecutter https://github.com/petr-korobeinikov/cookiecutters/ --directory leetcode-swift

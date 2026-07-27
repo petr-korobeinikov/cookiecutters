@@ -1,11 +1,11 @@
 {
     "template": [
-        "LeetCode Go (leetcode-go)",
-        "LeetCode Kotlin (leetcode-kotlin)",
-        "LeetCode PostgreSQL (leetcode-postgresql)",
-        "LeetCode Rust (leetcode-rust)",
-        "LeetCode Scala (leetcode-scala)",
-        "LeetCode Swift (leetcode-swift)",
+        "LeetCode :: Go (leetcode-go)",
+        "LeetCode :: Kotlin (leetcode-kotlin)",
+        "LeetCode :: PostgreSQL (leetcode-postgresql)",
+        "LeetCode :: Rust (leetcode-rust)",
+        "LeetCode :: Scala (leetcode-scala)",
+        "LeetCode :: Swift (leetcode-swift)",
         "Spec Driven Development :: OpenSpec (sdd-openspec)"
     ]
 }
