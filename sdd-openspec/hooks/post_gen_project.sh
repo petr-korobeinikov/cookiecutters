@@ -18,6 +18,10 @@ command -v mise >/dev/null 2>&1 || warn "mise not found on PATH"
 mise trust >/dev/null 2>&1 || warn "mise trust failed"
 mise install || warn "mise install failed"
 
+# Agent skills (petr-korobeinikov/skills) → .claude/skills/ — best-effort, non-blocking.
+mise exec -- npx skills add petr-korobeinikov/skills --skill '*' --copy --agent claude-code -y \
+	|| echo "post-gen: skills install failed — see README.md to install them." >&2
+
 # OpenSpec — Claude only.
 # Generates openspec/ + .claude/commands/opsx + .claude/skills/openspec-*.
 mise exec -- openspec init --tools claude --force || warn "openspec init failed"

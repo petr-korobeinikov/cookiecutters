@@ -17,4 +17,10 @@ git flow feature finish <id>   # with /opsx:archive — run /opsx:sync first
 ```
 
 Browse specs and changes with `mise exec -- openspec view`.
-Skills aren't committed — Claude restores them from `skills-lock.json` on the first session.
+
+The post-gen hook installs the agent skills into `.claude/skills/`.
+Re-run to update them or install them in a fresh clone:
+
+```shell
+mise exec -- npx skills add petr-korobeinikov/skills --skill '*' --copy --agent claude-code -y
+```
