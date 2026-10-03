@@ -4,7 +4,7 @@ lockfile = true
 
 [tools]
 node = "lts"
-"aqua:gittower/git-flow-next" = "1.1.0"
+"aqua:gittower/git-flow-next" = "2.0.0"
 "npm:@fission-ai/openspec" = "1.14.0"
 
 [env]

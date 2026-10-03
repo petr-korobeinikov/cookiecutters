@@ -9,7 +9,7 @@ set -u
 
 warn() {
 	echo "post-gen: $1 — automatic setup skipped." >&2
-	echo "post-gen: finish it with: mise install && mise exec -- openspec init --tools claude --force && git init && mise exec -- git flow init --preset=classic --defaults" >&2
+	echo "post-gen: finish it with: mise install && mise exec -- openspec init --tools claude --force && git init && mise exec -- git flow init --force --preset=classic --defaults && mise exec -- git flow config sync" >&2
 	exit 0
 }
 
@@ -26,9 +26,13 @@ mise exec -- npx skills add petr-korobeinikov/skills --skill '*' --copy --agent 
 # Generates openspec/ + .claude/commands/opsx + .claude/skills/openspec-*.
 mise exec -- openspec init --tools claude --force || warn "openspec init failed"
 
-# git + git-flow-next (classic Gitflow; feature branches rebase-collapsed on finish).
+# git + git-flow-next.
+# The branch model itself ships in the committed .gitflow (feature and bugfix branches
+# rebase-collapsed on finish), so it survives cloning — .git/config does not.
+# `init --force` only lays down main + develop and leaves .gitflow untouched;
+# `config sync` then copies the shipped model into .git/config.
 git rev-parse --is-inside-work-tree >/dev/null 2>&1 || git init -q || warn "git init failed"
-mise exec -- git flow init --preset=classic --defaults || warn "git flow init failed"
-git config gitflow.branch.feature.upstreamstrategy rebase || true
+mise exec -- git flow init --force --preset=classic --defaults || warn "git flow init failed"
+mise exec -- git flow config sync || warn "git flow config sync failed"
 
 echo "post-gen: OpenSpec (Claude-only) + git-flow-next initialized."
