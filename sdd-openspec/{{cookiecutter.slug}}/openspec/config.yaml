@@ -1,0 +1,138 @@
+schema: spec-driven
+
+# Project context. Injected into every artifact instruction and into the
+# apply / archive operations.
+context: |
+  ## Workflow
+
+  Plan every change as an OpenSpec change before writing code, and drive it
+  with the `/opsx:*` commands. One change is one git-flow `feature/` branch
+  sharing its id, and `/opsx:sync` runs before `/opsx:archive`.
+
+  Commit messages follow Conventional Commits, in English, and never mention
+  an AI agent or model in any form - no `Co-Authored-By:` trailer for a
+  machine address, no "Generated with" line.
+
+  Generated, never hand-edited: `openspec/` apart from this file, and the
+  `opsx` / `openspec-*` glue under `.claude/`; regenerate them with
+  `mise exec -- openspec update`. General mise / OpenSpec / git-flow usage
+  lives in the skills installed under `.claude/skills/`.
+
+  ## Working agreement
+
+  The reader is a peer, not a customer: twenty years of backend engineering,
+  mobile development since 2012. No basics, no hand-holding, no restating
+  what the code already says. Name the trade-off instead of listing every
+  option. Push back on a decision that looks wrong and say why; silent
+  agreement is worse than an argument.
+
+  This project is young and most of it is undecided. A rule is written here
+  only once it has been settled, and everything absent is still open. Do not
+  invent a domain fact, a file layout or a dependency to fill a gap - propose
+  it as a decision and ask, or say plainly that the change cannot be
+  specified until that decision is made.
+
+  ## Scope
+
+  A change fits in one head and is checked in one sitting. Content that will
+  not fit the budgets under Writing means the change is split along capability
+  boundaries; a scenario is never dropped to fit.
+
+  ## Writing
+
+  Words cost the reader's time: cut words, never content.
+
+  - Concrete over descriptive: a number, a path, a type, a command or an error
+    text - not an adjective, and not a summary of one.
+  - Each fact lives in one artifact - why in the proposal, what in the spec,
+    how in the design, steps and results in the tasks - and the others point
+    to it.
+  - A decision is one bullet: the choice, the alternative it beat, and the
+    reason in one sentence.
+  - A table replaces paragraphs whenever the items share fields.
+  - No throat-clearing ("worth noting", "importantly", "in order to"), and no
+    narration of what was done - the diff shows that.
+  - Budgets, in words, for a change's artifacts: proposal 600, design 800,
+    each spec document 500, tasks 600 as planned, and three lines of notes
+    under each task once it is done. `wc -w` checks them before the plan is
+    committed; up to a tenth over passes, beyond that words are cut.
+
+  ## Platform
+
+  The deterministic core imports no UI framework and is tested on the host;
+  platform-specific code carries only what genuinely cannot be shared, and
+  each such entry is a decision worth naming in the design.
+
+  The toolchain is pinned in `mise.toml` with every version in full, and
+  `mise.lock` is written only by mise - never deleted, never recreated by
+  hand.
+
+  ## Engineering
+
+  Canonical TDD, and it binds the business logic: write the failing test,
+  watch it fail for the right reason, write the minimum code that passes,
+  then refactor with the suite green. A task is never marked complete while
+  a test is failing or skipped; report the failure instead.
+
+  A type does one job, stated in one sentence with no "and"; outgrowing a
+  screen is a signal to look for the seam, never a licence to split by moving
+  code to a second file. Identifiers are spelled in full - types, properties,
+  parameters, locals and JSON keys alike. A short form survives only where it
+  is the domain's own name (`id`, `url`), and a name is never shortened to
+  fit a line.
+
+  The design follows SOLID, and two of its letters do the daily work. A type
+  does one job, as above. A dependency points at an abstraction rather than at
+  whatever fulfils it: the core names what it needs, and the UI or
+  platform-specific code supplies it, never the reverse. An interface is
+  written for one consumer - a second consumer that needs half of it is asking
+  for a second interface. A repository is the exception: each kind of data
+  has one, and every consumer of that data takes it whole.
+
+  Code is read one screen at a time. A function that does not fit on one, or a
+  type that needs more than two, has a seam waiting to be found.
+
+# Per-artifact rules, additive to the schema's own guidance.
+rules:
+  proposal:
+    - "Use a kebab-case change id that is also a valid git branch name; it becomes `feature/<id>`."
+    - "Name every unmade decision the change rests on and propose it in Why; a proposal that quietly assumes one is not ready."
+    - "If the Capabilities section cannot be delivered inside the spec budget, propose several changes instead of one and say in Why which one comes first."
+    - "Why opens with one paragraph: the problem, its evidence in numbers or names, and why now. Decisions follow as bullets."
+    - "A dependency's audit is a table - version, licence, source, known vulnerabilities, transitive artifacts - with prose only for a finding."
+  specs:
+    - "A spec whose requirements will not fit the budget is split along capability boundaries - the overflow becomes its own spec, or its own change when it carries tasks of its own."
+    - "Every requirement must be verifiable as written; if the check cannot be named, the requirement is not specific enough yet."
+    - "State the behaviour, not the API that renders it: a requirement naming a UI framework type or a platform SDK belongs in design instead."
+  design:
+    - "Say which layer the behaviour lands in - the core, the UI above it, or platform-specific code."
+    - "Anything placed in platform-specific code carries the reason it cannot be shared; being easier to write there is not one."
+    - "Keep the rules out of the UI: a behaviour that can only be described by pointing at a UI component belongs in the core instead."
+    - "A screen is assembled from UI components that each do one thing and are named for it; a screen written as a single component keeps its seams inside it."
+    - "State how each component is tested and name the seam that makes it possible; a design with no test seam is not done."
+    - "Name each type's one job in a sentence with no \"and\"; needing one means the design holds two types."
+    - "Record a decision only where there was a real alternative; a design with none says so in one line instead of filling its sections."
+    - "A risk is one line: the risk, an arrow, the mitigation."
+  tasks:
+    - "Order tasks test-first: a task that changes business logic opens with the failing test that pins it."
+    - "Keep each task independently verifiable - it ends with a green suite, not with work left dangling for the next task."
+    - "Name how each task is checked - the command to run or the observation that proves it done; a task with no check is not a task."
+    - "A task is a step and its check in at most 60 words; its reason lives in the design, and the task points there."
+
+# Per-operation advisory guidance. Only `apply` and `archive` are supported.
+operations:
+  apply:
+    guidance:
+      - "Implement on the change's git-flow branch; if it does not exist yet, run `git flow feature start <change-id>` before the first task."
+      - "Run red-green-refactor per task: write the test, run it and see it fail for the right reason, then write the code that makes it pass."
+      - "Red-green-refactor is the rule for the business logic; a UI component that only renders the state it is handed is not held to it, and a UI component that needs a test of its own is one holding logic that belongs in the core."
+      - "Tests for the core run on the host; needing a simulator or a device to check core behaviour is a signal the logic sits in the wrong layer."
+      - "Never mark a task complete while a test is failing or skipped; report the failure instead."
+      - "If implementation reveals the change is wider than its specs described, stop and split it rather than growing the specs to match."
+      - "If implementation forces a decision the proposal did not make, stop and raise it; do not settle it silently in code."
+      - "Under a finished task, write only what the diff cannot show: numbers measured, deviations from the plan, decisions surfaced and who made them."
+  archive:
+    guidance:
+      - "Run `/opsx:sync` before archiving so `openspec/specs/` does not go stale."
+      - "After archiving, close the branch with `git flow feature finish <change-id>`."
+      - "Say what the change left undecided - decisions surfaced while implementing and deliberately deferred - one line each, so the next proposal can pick them up."
