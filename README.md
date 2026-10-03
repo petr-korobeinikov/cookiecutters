@@ -21,10 +21,12 @@ driven entirely through Claude Code
 (the `/opsx:*` commands and `openspec-*` skills — no other AI-tool integration).
 A post-generation hook stands the project up automatically via [mise](https://mise.jdx.dev):
 it materializes the pinned toolchain
-(Node — LTS — for the OpenSpec CLI, the OpenSpec CLI itself, and git-flow-next),
+(Node — LTS — for the OpenSpec CLI, the OpenSpec CLI itself, git-flow-next, and prek),
 runs `openspec init --tools claude`,
-and initializes the classic Gitflow branch model
-(`main` + `develop`, feature branches rebased onto `develop`).
+initializes the classic Gitflow branch model
+(`main` + `develop`, feature branches rebased onto `develop`),
+and installs the [prek](https://prek.j178.dev/) pre-commit hook
+(prek's built-in file-hygiene checks).
 
 Skills pinned in `skills-lock.json` aren't committed —
 Claude Code restores them from the lockfile on the first session

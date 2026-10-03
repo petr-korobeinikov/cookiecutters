@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # cookiecutter post-generation hook.
 # Runs in the freshly generated project root and stands it up in place:
-# pinned toolchain (mise) -> OpenSpec (Claude-only) -> git + git-flow-next.
+# pinned toolchain (mise) -> OpenSpec (Claude-only) -> git + git-flow-next -> prek.
 # Best-effort: if the environment can't do it (no mise, offline, …),
 # it warns and leaves the scaffold intact instead of failing generation.
 
@@ -9,7 +9,7 @@ set -u
 
 warn() {
 	echo "post-gen: $1 — automatic setup skipped." >&2
-	echo "post-gen: finish it with: mise install && mise exec -- openspec init --tools claude --force && git init && mise exec -- git flow init --force --preset=classic --defaults && mise exec -- git flow config sync" >&2
+	echo "post-gen: finish it with: mise install && mise exec -- openspec init --tools claude --force && git init && mise exec -- git flow init --force --preset=classic --defaults && mise exec -- git flow config sync && mise exec -- prek install" >&2
 	exit 0
 }
 
@@ -35,4 +35,7 @@ git rev-parse --is-inside-work-tree >/dev/null 2>&1 || git init -q || warn "git 
 mise exec -- git flow init --force --preset=classic --defaults || warn "git flow init failed"
 mise exec -- git flow config sync || warn "git flow config sync failed"
 
-echo "post-gen: OpenSpec (Claude-only) + git-flow-next initialized."
+# prek — wires the pre-commit hook configured in prek.toml into .git/hooks.
+mise exec -- prek install || warn "prek install failed"
+
+echo "post-gen: OpenSpec (Claude-only) + git-flow-next + prek initialized."

@@ -1,0 +1,28 @@
+# prek — https://prek.j178.dev/ — installed from mise (aqua:j178/prek) and wired into
+# .git/hooks by `prek install`.
+#
+# Every file-hygiene hook here is one of prek's own Rust implementations (repo = "builtin"),
+# so this repository clones no hook repositories and pins no third-party revs: there is
+# nothing to `prek update` and nothing extra to audit.
+
+[[repos]]
+repo = "builtin"
+hooks = [
+  # `auto` converts to whichever ending already dominates the file, so a CRLF file stays
+  # CRLF on its own terms rather than by an exception.
+  { id = "mixed-line-ending", args = ["--fix", "auto"] },
+  # Markdown pays for a trailing double space: there it is a hard line break, not dirt.
+  { id = "trailing-whitespace", args = ["--markdown-linebreak-ext", "md"] },
+  { id = "end-of-file-fixer" },
+  { id = "check-merge-conflict" },
+  { id = "check-added-large-files" },
+  { id = "check-case-conflict" },
+  { id = "detect-private-key" },
+  { id = "check-symlinks" },
+  { id = "destroyed-symlinks" },
+  # Syntax gates; each runs only on files of its own format.
+  { id = "check-toml" },
+  { id = "check-yaml" },
+  { id = "check-json" },
+  { id = "check-xml" },
+]
