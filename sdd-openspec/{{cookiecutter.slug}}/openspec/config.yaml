@@ -92,6 +92,13 @@ context: |
   Code is read one screen at a time. A function that does not fit on one, or a
   type that needs more than two, has a seam waiting to be found.
 
+  A comment is written only where it is needed, and it says what the code
+  cannot: why it is written this way - the constraint it obeys, the trap it
+  avoids, the source it follows. Clear code carries none, and a comment that
+  restates what the code does is deleted, doc comments and docstrings
+  included. Code that cannot be read without one is renamed or split at its
+  seam first, and commented only if it still cannot.
+
 # Per-artifact rules, additive to the schema's own guidance.
 rules:
   proposal:
