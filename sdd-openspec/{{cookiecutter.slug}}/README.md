@@ -6,15 +6,38 @@ Spec-driven development on [OpenSpec](https://github.com/Fission-AI/OpenSpec),
 driven from Claude Code via the `/opsx:*` commands — no other AI-tool integration.
 `cookiecutter` wired up the toolchain ([mise](https://mise.jdx.dev)),
 OpenSpec, git-flow-next, and prek on generation.
+The template asked mise for Node's `lts`;
+the post-gen hook pinned the version it resolved to, in full,
+as every other tool in `mise.toml` is pinned.
 
 ## Workflow
 
-Each change is one OpenSpec change on one git-flow feature branch:
+Each change is one OpenSpec change,
+and every plan is one commit.
+It is planned one of two ways,
+and `/opsx:sync` runs before `/opsx:archive` either way.
+
+**Ahead.**
+Each plan is proposed on `develop` and committed alone,
+and may wait there, unimplemented, until its turn.
+Its implementation is one commit on its own branch:
 
 ```shell
-git flow feature start <id>    # with /opsx:propose "<id>"
-git flow feature finish <id>   # with /opsx:archive — run /opsx:sync first
+git flow feature start <id>    # right before /opsx:apply
+git flow feature finish <id>   # after /opsx:sync, /opsx:archive and the commit
 ```
+
+**Just in time.**
+The branch comes first,
+and the plan, the code and the archive go in as one commit:
+
+```shell
+git flow feature start <id>    # then /opsx:propose "<id>" and /opsx:apply on it
+git flow feature finish <id>   # after /opsx:sync, /opsx:archive and the commit
+```
+
+Every implementation runs in a clean Claude Code session,
+which is cleared with `/clear` once its branch is finished.
 
 Browse specs and changes with `mise exec -- openspec view`.
 

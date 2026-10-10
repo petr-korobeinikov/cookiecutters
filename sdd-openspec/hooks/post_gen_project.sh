@@ -9,13 +9,16 @@ set -u
 
 warn() {
 	echo "post-gen: $1 — automatic setup skipped." >&2
-	echo "post-gen: finish it with: mise install && mise exec -- openspec init --tools claude --force && git init && mise exec -- git flow init --force --preset=classic --defaults && mise exec -- git flow config sync && mise exec -- prek install" >&2
+	echo "post-gen: finish it with: mise use --pin node@lts && mise install &&mise exec -- openspec init --tools claude --force && git init && mise exec -- git flow init --force --preset=classic --defaults && mise exec -- git flow config sync && mise exec -- prek install" >&2
 	exit 0
 }
 
 command -v mise >/dev/null 2>&1 || warn "mise not found on PATH"
 
 mise trust >/dev/null 2>&1 || warn "mise trust failed"
+# The template asks for Node's `lts`; the project pins the version it
+# resolves to, in full, as its openspec/config.yaml Platform rule asks.
+mise use --pin node@lts || warn "pinning Node's LTS failed"
 mise install || warn "mise install failed"
 
 # Agent skills (petr-korobeinikov/skills) → .claude/skills/ — best-effort, non-blocking.

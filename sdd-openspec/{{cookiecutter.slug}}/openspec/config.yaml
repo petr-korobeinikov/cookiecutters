@@ -79,7 +79,42 @@ context: |
   code to a second file. Identifiers are spelled in full - types, properties,
   parameters, locals and JSON keys alike. A short form survives only where it
   is the domain's own name (`id`, `url`), and a name is never shortened to
-  fit a line.
+  fit a line. A place counted from zero, as a list counts, is a `position`;
+  one counted from one, as the reader counts, is a `number`. Every import
+  names what it brings in: no wildcard, not even where an IDE's defaults or a
+  generator write one, so the reader sees where each name comes from.
+
+  A type is named for its subject, then its role. A role a pattern or a
+  framework names keeps that word - `Repository`, `UseCase`, `Controller` -
+  and the word wins over any other. A type that does a job is named for it:
+  the agent noun of its verb as English spells it, `-er` or `-or`, with that
+  verb for its method - `ReportPrinter.print`, `ProofChecker.check` - and a
+  parameter or a local holding it takes that name (`proofChecker`). A type
+  that does no job keeps its noun (`AccessKey`, `InvoiceTotal`). An
+  implementation puts what it rests on before its interface's name
+  (`S3LinkSigner`, `PostgresOrderRepository`), `Default` when it rests on
+  nothing of its own; a test's double puts `Fake`, `InMemory` or what it
+  does instead (`FailingReportPrinter`). A role the project holds exactly
+  once by design is `App` and the role's word (`AppDatabase`). A package is
+  named for its subject (`billing/`, `subscription/`).
+
+  A type and a value of it are named in the singular, for what one of them
+  is: a holder of sizes is a `Size`, and its variant reads `Size.large`,
+  never `Sizes.large`. Where a name means many, it is the singular and then
+  `List`, in the language's own case - `itemList`, `personList`, never
+  `items` or `people` - whatever the language calls the collection, and
+  alike for a type, a property, a parameter, a local and a key. A plural
+  stays only where English has no singular (`news`). A text the reader sees
+  in several places, alike in every language, is one resource key, named for
+  what it says rather than where it shows.
+
+  A lambda names its parameter, a one-liner too - `{ name -> name.trim() }`,
+  never Kotlin's implicit `it` or Swift's `$0`; a function reference needs
+  none (`::parse`). A constructor of the project's own type takes every
+  argument by name (`Invoice(number = 7, total = sum)`); a call into a
+  library names an argument whose meaning the call does not show, such as a
+  literal (`take(n = 8)`, `joinToString(separator = "\n")`), and leaves a
+  self-evident argument positional (`listOf(first, second)`).
 
   The design follows SOLID, and two of its letters do the daily work. A type
   does one job, as above. A dependency points at an abstraction rather than at
@@ -90,14 +125,56 @@ context: |
   has one, and every consumer of that data takes it whole.
 
   Code is read one screen at a time. A function that does not fit on one, or a
-  type that needs more than two, has a seam waiting to be found.
+  type that needs more than two, has a seam waiting to be found. In numbers:
+  a function runs to at most 40 lines and a type to 120; a file or a type
+  holds at most 8 functions; a function takes at most 4 parameters, a
+  constructor 5; blocks nest at most 3 deep; cognitive complexity stays
+  within 10 and cyclomatic within 8. The stack's linter gates whichever of
+  these it can count, and the rest is on the author.
 
   A comment is written only where it is needed, and it says what the code
   cannot: why it is written this way - the constraint it obeys, the trap it
   avoids, the source it follows. Clear code carries none, and a comment that
   restates what the code does is deleted, doc comments and docstrings
   included. Code that cannot be read without one is renamed or split at its
-  seam first, and commented only if it still cannot.
+  seam first, and commented only if it still cannot. A directive to a
+  tool - a shebang, a linter's suppression - is code, not a comment, and
+  stays.
+
+  ## Housekeeping
+
+  A housekeeping change reads `README.md` against the tree as a task of its
+  own: a statement there outlives the change that made it true, and the next
+  reader, often an agent, acts on it. It does not read every comment again:
+  the comment rule under Engineering holds each one to its why whenever the
+  code under it changes. A call changes form - a lambda's parameter, a named
+  argument - only when its code changes for another reason, never in a pass
+  of its own, whose diff costs more than the form gives.
+
+  A housekeeping pass opens with an audit split by dimension - names, the
+  statements comments and the README make, structure and build, the look's
+  elements, components and data, tests - in which each auditor only reads,
+  citing every finding by file and line with its count and the rule it
+  breaks. The reports stay beside the repository, outside version control,
+  for every plan after them to draw on.
+
+  Every finding the audit leaves open is planned as a change of its own, and
+  none is dropped at planning: one the rules above weigh as poor payback is
+  planned all the same, saying so in its Why for the owner to strike. The
+  plans are proposed ahead, one commit each, and apply in this order: first
+  what ships or misleads - the release build's content, a test that passes
+  without proving anything, a statement that is false - then names, then
+  structure and build, then reuse, then the coverage still missing, and
+  last whatever moves a pixel. Each plan's first task recounts its tables
+  on the tree its predecessors leave.
+
+  A rename is proved to be one: every suite's count and the test total
+  stand as before, version control shows each moved file as a rename, and a
+  search for every old name finds only what the plan keeps. A member renamed
+  to a name its type already holds, such as a constructor's property,
+  captures each call to that name written without a receiver; such calls
+  are read before the build, and the suites run under a time limit, since a
+  call that captures itself can wait forever.
 
 # Per-artifact rules, additive to the schema's own guidance.
 rules:
