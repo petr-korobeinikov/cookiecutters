@@ -9,6 +9,11 @@ context: |
   with the `/opsx:*` commands. One change is one git-flow `feature/` branch
   sharing its id, and `/opsx:sync` runs before `/opsx:archive`.
 
+  A session either plans or implements, never both, and is cleared (`/clear`)
+  once its work is done. With an Opus-class model, planning runs at effort max
+  and implementation at effort high; every agent a session starts runs at the
+  session's effort.
+
   Commit messages follow Conventional Commits, in English, and never mention
   an AI agent or model in any form - no `Co-Authored-By:` trailer for a
   machine address, no "Generated with" line.
