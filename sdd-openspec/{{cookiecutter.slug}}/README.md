@@ -59,12 +59,29 @@ Every file-hygiene hook is one of prek's own Rust implementations —
 and pins no third-party revs:
 there is nothing to `prek update`, and nothing extra to audit.
 
+One more builtin, `deny-pattern`, reads the commit message
+and refuses a subject over 72 characters,
+so that `git log --oneline` gives each commit one line.
+The subject is the first line that is neither blank nor a comment,
+counted in characters rather than bytes,
+without the trailing whitespace git strips;
+the lines after it are not measured,
+though `git log --oneline` joins those before the first blank line to it.
+This hook alone runs at `commit-msg`;
+every other one runs at `pre-commit`.
+`git commit --no-verify` skips it with the rest,
+and git calls no hook for a revert, a cherry-pick or a rebase,
+even where the message is edited, as in a squash:
+only a `reword`, and a cherry-pick or revert finished after a conflict,
+run both hooks.
+
 ```shell
-mise exec -- prek install           # wire the hook
-mise exec -- prek run --all-files   # every hook over the whole tree
+mise exec -- prek install           # wire both git hooks
+mise exec -- prek run --all-files   # every pre-commit hook over the whole tree
 ```
 
 The post-gen hook runs `prek install`.
 Re-run it in a fresh clone and after a prek upgrade:
-the generated `.git/hooks/pre-commit` pins the path of the prek binary
-it was installed from, and that path carries the version.
+the generated `.git/hooks/pre-commit` and `.git/hooks/commit-msg`
+pin the path of the prek binary they were installed from,
+and that path carries the version.

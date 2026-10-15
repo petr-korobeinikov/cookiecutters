@@ -25,8 +25,9 @@ it materializes the pinned toolchain
 runs `openspec init --tools claude`,
 initializes the classic Gitflow branch model
 (`main` + `develop`, feature branches rebased onto `develop`),
-and installs the [prek](https://prek.j178.dev/) pre-commit hook
-(prek's built-in file-hygiene checks).
+and installs the [prek](https://prek.j178.dev/) pre-commit and commit-msg hooks
+(prek's built-in file-hygiene checks
+and a 72-character limit on the commit subject).
 
 Skills pinned in `skills-lock.json` aren't committed —
 Claude Code restores them from the lockfile on the first session

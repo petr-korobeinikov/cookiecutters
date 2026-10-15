@@ -5,6 +5,12 @@
 # so this repository clones no hook repositories and pins no third-party revs: there is
 # nothing to `prek update` and nothing extra to audit.
 
+# The subject gate at the end reads the commit message, so `prek install` wires commit-msg
+# too. Every other hook stays at pre-commit: left on every stage, they would run on the
+# message as well, and mixed-line-ending would rewrite it.
+default_install_hook_types = ["pre-commit", "commit-msg"]
+default_stages = ["pre-commit"]
+
 [[repos]]
 repo = "builtin"
 hooks = [
@@ -26,3 +32,17 @@ hooks = [
   { id = "check-json" },
   { id = "check-xml" },
 ]
+
+# A subject over 72 characters wraps in `git log --oneline`. The pattern reads the subject
+# as git stores it: past the blank and #-comment lines a squash or a template opens with,
+# in characters rather than bytes, and without the trailing whitespace git strips — the
+# closing \S. --multiline hands it the whole file and lets `.` cross lines, hence [^\n].
+[[repos]]
+repo = "builtin"
+
+[[repos.hooks]]
+id = "deny-pattern"
+name = "commit subject (72 characters at most)"
+description = "Shorten the subject; anything more goes in the body, after a blank line"
+stages = ["commit-msg"]
+args = ["--multiline", '\A(?:[ \t]*\n|#[^\n]*\n)*[^#\n][^\n]{71}[^\n]*\S']

@@ -38,7 +38,7 @@ git rev-parse --is-inside-work-tree >/dev/null 2>&1 || git init -q || warn "git 
 mise exec -- git flow init --force --preset=classic --defaults || warn "git flow init failed"
 mise exec -- git flow config sync || warn "git flow config sync failed"
 
-# prek — wires the pre-commit hook configured in prek.toml into .git/hooks.
+# prek — wires the git hooks prek.toml names, pre-commit and commit-msg, into .git/hooks.
 mise exec -- prek install || warn "prek install failed"
 
 echo "post-gen: OpenSpec (Claude-only) + git-flow-next + prek initialized."
