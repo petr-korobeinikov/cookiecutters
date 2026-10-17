@@ -26,8 +26,10 @@ runs `openspec init --tools claude`,
 initializes the classic Gitflow branch model
 (`main` + `develop`, feature branches rebased onto `develop`),
 and installs the [prek](https://prek.j178.dev/) pre-commit and commit-msg hooks
-(prek's built-in file-hygiene checks
-and a 72-character limit on the commit subject).
+(prek's built-in file-hygiene checks,
+a 72-character limit on the commit subject,
+a Conventional Commits subject,
+and no line crediting an AI agent or a model).
 
 Skills pinned in `skills-lock.json` aren't committed —
 Claude Code restores them from the lockfile on the first session

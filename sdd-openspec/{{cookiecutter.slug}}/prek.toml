@@ -5,7 +5,7 @@
 # so this repository clones no hook repositories and pins no third-party revs: there is
 # nothing to `prek update` and nothing extra to audit.
 
-# The subject gate at the end reads the commit message, so `prek install` wires commit-msg
+# The message gates at the end read the commit message, so `prek install` wires commit-msg
 # too. Every other hook stays at pre-commit: left on every stage, they would run on the
 # message as well, and mixed-line-ending would rewrite it.
 default_install_hook_types = ["pre-commit", "commit-msg"]
@@ -46,3 +46,25 @@ name = "commit subject (72 characters at most)"
 description = "Shorten the subject; anything more goes in the body, after a blank line"
 stages = ["commit-msg"]
 args = ["--multiline", '\A(?:[ \t]*\n|#[^\n]*\n)*[^#\n][^\n]{71}[^\n]*\S']
+
+# The same subject, read as Conventional Commits: `type(scope)!: description`, the scope and
+# the `!` optional. git's own subjects pass as they are: a merge, which git-flow's finish
+# makes and which runs commit-msg, a revert, and the fixup!, squash! and amend! of autosquash.
+[[repos.hooks]]
+id = "deny-pattern"
+name = "commit subject (Conventional Commits)"
+description = "Write the subject as type(scope): description, as in feat(catalogue): add a filter"
+stages = ["commit-msg"]
+args = ["--multiline", '\A(?:[ \t]*\n|#[^\n]*\n)*(?![a-z]+(?:\([^()\n]+\))?!?: \S|Merge |Revert "|(?:fixup|squash|amend)! )[^#\n]']
+
+# No line past the subject credits an AI agent or a model: a line that opens with `Token: `
+# — a trailer, or any body line written that way — or holds "Generated with" or "Generated
+# by" is refused once it names one further on. The names are a list, so a new agent has to
+# be added to it, and a name refuses its line whatever it means there: `Pagination: the
+# cursor …` fails as well. Every other trailer is allowed.
+[[repos.hooks]]
+id = "deny-pattern"
+name = "commit trailers (no AI agent or model)"
+description = "Drop the line that credits an AI agent or a model; other trailers stay"
+stages = ["commit-msg"]
+args = ["--multiline", '(?i)\n(?!#)(?:[a-z][\w-]*:[ \t]|[^\n]*\bgenerated (?:with|by)\b)[^\n]*?\b(?:claude|anthropic|openai|chatgpt|gpt-?\d|copilot|gemini|codex|cursor|windsurf|aider|devin)\b']

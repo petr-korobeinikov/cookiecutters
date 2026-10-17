@@ -14,9 +14,29 @@ context: |
   and implementation at effort high; every agent a session starts runs at the
   session's effort.
 
-  Commit messages follow Conventional Commits, in English, and never mention
-  an AI agent or model in any form - no `Co-Authored-By:` trailer for a
-  machine address, no "Generated with" line.
+  Commit messages follow Conventional Commits, in English:
+  `type(scope): description`. The scope names the area of code or the
+  tracker's task id - `feat(catalogue): …`, `fix(PROJ-32): …` - and is left
+  out only where nothing narrower than the whole project fits, as in
+  `chore: release 2026.10.0`. The subject is in the imperative mood,
+  lower-case after the prefix, without a closing full stop, 72 characters at
+  most and 50 where it can be.
+
+  Whether a commit carries a body is the operator's call: ask before the
+  first commit of the project's own work - git-flow's `Initial commit` is
+  not one - and replace this sentence with the answer. Without
+  a body the message is the subject line alone; with one, a blank line
+  separates it from the subject, and trailers, if any, close the message
+  after another blank line. No line credits an AI agent or model in any
+  form - no `Co-Authored-By:` trailer for a machine address, no "Generated
+  with" line; every other trailer is allowed.
+
+  A release is named `YYYY.M.MICRO`: the year, the month without a leading
+  zero, and the count of releases cut earlier that month, from 0. Without
+  the leading zero the name is valid SemVer, and a later release sorts above
+  an earlier one. Its tag is `v` followed by the name - `v2026.10.0`, put by
+  `git flow release finish 2026.10.0`, whose `tagPrefix` is `v` in
+  `.gitflow`. The sources carry the name, never the `v`.
 
   Generated, never hand-edited: `openspec/` apart from this file, and the
   `opsx` / `openspec-*` glue under `.claude/`; regenerate them with

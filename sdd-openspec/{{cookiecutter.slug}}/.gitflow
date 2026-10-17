@@ -50,6 +50,7 @@
 	prefix = release/
 	autoUpdate = false
 	tag = true
+	tagPrefix = v
 [gitflow "branch.hotfix"]
 	type = topic
 	parent = main
@@ -59,3 +60,4 @@
 	prefix = hotfix/
 	autoUpdate = false
 	tag = true
+	tagPrefix = v
