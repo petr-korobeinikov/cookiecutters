@@ -16,10 +16,10 @@ context: |
 
   Commit messages follow Conventional Commits, in English:
   `type(scope): description`. The scope names the area of code or the
-  tracker's task id - `feat(catalogue): …`, `fix(PROJ-32): …` - and is left
+  tracker's task id - `feat(catalog): …`, `fix(PROJ-32): …` - and is left
   out only where nothing narrower than the whole project fits, as in
   `chore: release 2026.10.0`. The subject is in the imperative mood,
-  lower-case after the prefix, without a closing full stop, 72 characters at
+  lowercase after the prefix, without a closing period, 72 characters at
   most and 50 where it can be.
 
   Whether a commit carries a body is the operator's call: ask before the
@@ -100,7 +100,7 @@ context: |
   a test is failing or skipped; report the failure instead.
 
   A type does one job, stated in one sentence with no "and"; outgrowing a
-  screen is a signal to look for the seam, never a licence to split by moving
+  screen is a signal to look for the seam, never a license to split by moving
   code to a second file. Identifiers are spelled in full - types, properties,
   parameters, locals and JSON keys alike. A short form survives only where it
   is the domain's own name (`id`, `url`), and a name is never shortened to
@@ -108,6 +108,21 @@ context: |
   one counted from one, as the reader counts, is a `number`. Every import
   names what it brings in: no wildcard, not even where an IDE's defaults or a
   generator write one, so the reader sees where each name comes from.
+
+  English is American English, its spelling and its words, in everything
+  the project names or writes: identifiers, packages, files and folders,
+  resource and JSON keys, URL paths, table and column names, the keys of
+  stored data, metric and trace names, branch, change and capability ids,
+  specs, docs, comments, commit messages and every English text a user
+  reads - `color`, `behavior`, `catalog`, `dialog`, `favorite`, `license`,
+  `center`, `gray`, `canceled`, `labeled`, `initialize`, `analyze`, and
+  `check` rather than `tick`. A name the project does not own keeps its
+  owner's spelling: a library's or a platform's API (Kotlin's
+  `isCancelled`), another party's wire format, a proper name, a quotation,
+  a legal text. A name the public has already received - on the wire, in
+  stored data, in a released build - moves only by a change of its own,
+  which keeps the old name working beside the new one while an older
+  reader remains, and migrates what is stored rather than dropping it.
 
   A type is named for its subject, then its role. A role a pattern or a
   framework names keeps that word - `Repository`, `UseCase`, `Controller` -
@@ -143,7 +158,7 @@ context: |
 
   The design follows SOLID, and two of its letters do the daily work. A type
   does one job, as above. A dependency points at an abstraction rather than at
-  whatever fulfils it: the core names what it needs, and the UI or
+  whatever fulfills it: the core names what it needs, and the UI or
   platform-specific code supplies it, never the reverse. An interface is
   written for one consumer - a second consumer that needs half of it is asking
   for a second interface. A repository is the exception: each kind of data
@@ -208,15 +223,15 @@ rules:
     - "Name every unmade decision the change rests on and propose it in Why; a proposal that quietly assumes one is not ready."
     - "If the Capabilities section cannot be delivered inside the spec budget, propose several changes instead of one and say in Why which one comes first."
     - "Why opens with one paragraph: the problem, its evidence in numbers or names, and why now. Decisions follow as bullets."
-    - "A dependency's audit is a table - version, licence, source, known vulnerabilities, transitive artifacts - with prose only for a finding."
+    - "A dependency's audit is a table - version, license, source, known vulnerabilities, transitive artifacts - with prose only for a finding."
   specs:
     - "A spec whose requirements will not fit the budget is split along capability boundaries - the overflow becomes its own spec, or its own change when it carries tasks of its own."
     - "Every requirement must be verifiable as written; if the check cannot be named, the requirement is not specific enough yet."
-    - "State the behaviour, not the API that renders it: a requirement naming a UI framework type or a platform SDK belongs in design instead."
+    - "State the behavior, not the API that renders it: a requirement naming a UI framework type or a platform SDK belongs in design instead."
   design:
-    - "Say which layer the behaviour lands in - the core, the UI above it, or platform-specific code."
+    - "Say which layer the behavior lands in - the core, the UI above it, or platform-specific code."
     - "Anything placed in platform-specific code carries the reason it cannot be shared; being easier to write there is not one."
-    - "Keep the rules out of the UI: a behaviour that can only be described by pointing at a UI component belongs in the core instead."
+    - "Keep the rules out of the UI: a behavior that can only be described by pointing at a UI component belongs in the core instead."
     - "A screen is assembled from UI components that each do one thing and are named for it; a screen written as a single component keeps its seams inside it."
     - "State how each component is tested and name the seam that makes it possible; a design with no test seam is not done."
     - "Name each type's one job in a sentence with no \"and\"; needing one means the design holds two types."
@@ -235,7 +250,7 @@ operations:
       - "Implement on the change's git-flow branch; if it does not exist yet, run `git flow feature start <change-id>` before the first task."
       - "Run red-green-refactor per task: write the test, run it and see it fail for the right reason, then write the code that makes it pass."
       - "Red-green-refactor is the rule for the business logic; a UI component that only renders the state it is handed is not held to it, and a UI component that needs a test of its own is one holding logic that belongs in the core."
-      - "Tests for the core run on the host; needing a simulator or a device to check core behaviour is a signal the logic sits in the wrong layer."
+      - "Tests for the core run on the host; needing a simulator or a device to check core behavior is a signal the logic sits in the wrong layer."
       - "Never mark a task complete while a test is failing or skipped; report the failure instead."
       - "If implementation reveals the change is wider than its specs described, stop and split it rather than growing the specs to match."
       - "If implementation forces a decision the proposal did not make, stop and raise it; do not settle it silently in code."
