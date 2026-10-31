@@ -1,11 +1,10 @@
 [settings]
 disable_backends = ["ubi", "asdf"]
 lockfile = true
-# Install Python CLIs (pipx backend) through uv/uvx instead of pipx.
-pipx.uvx = true
 
 [tools]
-python = "3.14.6"
-uv = "0.9.22"
-# Build cookiecutter's venv against the pinned Python, not whatever uv picks by default.
-"pipx:cookiecutter" = { version = "2.7.1", uvx_args = "--python 3.14.6" }
+# Installs the pypi: tools below; 0.12.10 and newer let `mise lock` record each tool's full dependency graph.
+uv = "0.13.6"
+# Built on a Python of its own, which stays off the shell's PATH. 3.14, not 3.15: PyYAML 6.0.3 ships no cp315
+# wheels, and the locked graph installs wheels only.
+"pypi:cookiecutter" = { version = "2.7.1", python = "3.14.10" }
