@@ -23,5 +23,9 @@ Repo-specific conventions
 - **Every implementation runs in a clean session:**
   a fresh session starts it,
   and the session is cleared (`/clear`) once its branch is finished.
+- **Replies are concrete, dry and strictly to the point:**
+  the answer first, no filler, no recap.
+  A full screen is justified only by substance;
+  half a screen of filler is already too much.
 - `openspec/` and the `opsx` / `openspec-*` glue under `.claude/` are generated —
   regenerate via `mise exec -- openspec update`, don't hand-edit.
