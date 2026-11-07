@@ -201,12 +201,12 @@ context: |
   Every finding the audit leaves open is planned as a change of its own, and
   none is dropped at planning: one the rules above weigh as poor payback is
   planned all the same, saying so in its Why for the owner to strike. The
-  plans are proposed ahead, one commit each, and apply in this order: first
-  what ships or misleads - the release build's content, a test that passes
-  without proving anything, a statement that is false - then names, then
-  structure and build, then reuse, then the coverage still missing, and
-  last whatever moves a pixel. Each plan's first task recounts its tables
-  on the tree its predecessors leave.
+  changes land in this order: first what ships or misleads - the release
+  build's content, a test that passes without proving anything, a statement
+  that is false - then names, then structure and build, then reuse, then the
+  coverage still missing, and last whatever moves a pixel. Each builds on
+  the tree its predecessors leave, so each is planned just in time, once the
+  one before it has landed, and counts its tables on that tree.
 
   A rename is proved to be one: every suite's count and the test total
   stand as before, version control shows each moved file as a rename, and a
