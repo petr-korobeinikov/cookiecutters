@@ -16,12 +16,14 @@ Each change is one OpenSpec change on its own `feature/<id>` branch,
 and `/opsx:sync` runs before `/opsx:archive`.
 A Claude Code session either plans or implements, never both,
 and commits everything it wrote before `/clear`.
-A plan is a commit of its own, and so is a replan.
+A plan is a commit of its own, and so is a replan:
+on `develop` until the change has its branch, on `feature/<id>` from then on.
 A change is planned one of two ways.
 
 **Ahead,**
-for a change that depends on nothing still unlanded.
-The plan is proposed and committed on `develop`,
+when it is planned now and implemented later,
+and only if it depends on nothing still unlanded.
+Each plan is proposed and committed on `develop` alone,
 and may wait there, unimplemented, until its turn:
 
 ```shell
@@ -30,9 +32,10 @@ git flow feature finish <id>   # after /opsx:sync, /opsx:archive and the commits
 ```
 
 **Just in time,**
-for a change that builds on one still in flight.
-Once that one has landed on `develop`,
-the branch comes first,
+when it is implemented right after it is planned,
+and always for a change that builds on one still in flight,
+once that one has landed on `develop`.
+The branch comes first,
 and the plan is proposed and committed on it:
 
 ```shell

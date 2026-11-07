@@ -13,15 +13,18 @@ Repo-specific conventions
   Before `/clear`, everything the session wrote is committed:
   no session hands uncommitted work to the next.
 - **A plan is a commit of its own, and so is a replan:**
-  on `develop` while the plan waits, on `feature/<id>` once its implementation has started.
+  on `develop` until the change has its branch, on `feature/<id>` from then on.
   A change is planned one of two ways:
-  - **Ahead:** `/opsx:propose "<id>"` on `develop`,
+  - **Ahead,** when it is planned now and implemented later:
+    `/opsx:propose "<id>"` on `develop`, one commit per plan,
     only for a change that depends on nothing still unlanded;
     it may wait there, unimplemented, until its turn.
-  - **Just in time:** for a change that builds on one still in flight,
+  - **Just in time,** when it is implemented right after it is planned,
+    and always for a change that builds on one still in flight,
     once that one has landed on `develop`:
     `git flow feature start <id>` first,
-    then `/opsx:propose "<id>"` on that branch.
+    then `/opsx:propose "<id>"` on that branch,
+    and `/clear` before the implementation.
 - **A planning session writes the plan alone,**
   no code, not even in a scratch clone.
   A fact it cannot settle from the docs or the code is probed only with the operator's yes,
