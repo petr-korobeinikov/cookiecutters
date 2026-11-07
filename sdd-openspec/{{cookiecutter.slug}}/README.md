@@ -31,7 +31,8 @@ git flow feature finish <id>   # after /opsx:sync, /opsx:archive and the commits
 
 **Just in time,**
 for a change that builds on one still in flight.
-The branch comes first,
+Once that one has landed on `develop`,
+the branch comes first,
 and the plan is proposed and committed on it:
 
 ```shell

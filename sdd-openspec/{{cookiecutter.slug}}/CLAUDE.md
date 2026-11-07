@@ -18,9 +18,10 @@ Repo-specific conventions
   - **Ahead:** `/opsx:propose "<id>"` on `develop`,
     only for a change that depends on nothing still unlanded;
     it may wait there, unimplemented, until its turn.
-  - **Just in time:** `git flow feature start <id>` first,
-    then `/opsx:propose "<id>"` on that branch,
-    for a change that builds on one still in flight.
+  - **Just in time:** for a change that builds on one still in flight,
+    once that one has landed on `develop`:
+    `git flow feature start <id>` first,
+    then `/opsx:propose "<id>"` on that branch.
 - **A planning session writes the plan alone,**
   no code, not even in a scratch clone.
   A fact it cannot settle from the docs or the code is probed only with the operator's yes,
