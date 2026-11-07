@@ -252,7 +252,7 @@ operations:
       - "Red-green-refactor is the rule for the business logic; a UI component that only renders the state it is handed is not held to it, and a UI component that needs a test of its own is one holding logic that belongs in the core."
       - "Tests for the core run on the host; needing a simulator or a device to check core behavior is a signal the logic sits in the wrong layer."
       - "Never mark a task complete while a test is failing or skipped; report the failure instead."
-      - "If implementation reveals the change is wider than its specs described, stop and split it rather than growing the specs to match."
+      - "If implementation reveals the change is wider than its specs described, stop and raise it for a split rather than growing the specs to match."
       - "If implementation forces a decision the proposal did not make, stop and raise it; do not settle it silently in code."
       - "Under a finished task, write only what the diff cannot show: numbers measured, deviations from the plan, decisions surfaced and who made them."
   archive:

@@ -41,10 +41,13 @@ git flow feature finish <id>   # after /opsx:sync, /opsx:archive and the commits
 ```
 
 The implementation lands as one commit or several split by meaning.
-A decision the plan did not make stops it:
+A decision the plan did not make stops it,
+and so does a change wider than its specs:
 the code is committed as `wip(<id>): …`,
-the decision is replanned in a fresh session,
-and before the finish the `wip` commits are split again by meaning.
+a fresh session replans it —
+the decision made, or the change narrowed and the rest made a change of its own —
+and before the finish the `wip` commits are split again by meaning,
+without the code the narrowed change no longer covers.
 
 Browse specs and changes with `mise exec -- openspec view`.
 

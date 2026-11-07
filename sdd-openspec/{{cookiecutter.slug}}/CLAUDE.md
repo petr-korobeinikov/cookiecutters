@@ -32,11 +32,14 @@ Repo-specific conventions
   `/opsx:sync` runs before `/opsx:archive`,
   so `openspec/specs/` doesn't go stale,
   and `/opsx:archive` ↔ `git flow feature finish <id>`.
-- **A decision the plan did not make stops the implementation:**
+- **A decision the plan did not make stops the implementation, and so does a change wider than its specs:**
   its code is committed on `feature/<id>` as `wip(<id>): …`,
-  the decision is replanned in a fresh session,
+  a fresh session replans it —
+  the decision made, or the change narrowed and the rest made a change of its own,
+  planned by the rules above —
   and another fresh session resumes the implementation.
-  Before the finish, `wip` commits are split again by meaning.
+  Before the finish, `wip` commits are split again by meaning,
+  and code the narrowed change no longer covers leaves the branch.
 - **Every commit but a `wip` one waits for the operator's review of its diff;**
   a passing hook or a request to finish does not replace it.
 - **Memory keeps decisions and preferences, never the state of work:**
