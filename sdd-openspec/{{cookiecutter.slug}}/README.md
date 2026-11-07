@@ -12,32 +12,38 @@ as every other tool in `mise.toml` is pinned.
 
 ## Workflow
 
-Each change is one OpenSpec change,
-and every plan is one commit.
-It is planned one of two ways,
-and `/opsx:sync` runs before `/opsx:archive` either way.
+Each change is one OpenSpec change on its own `feature/<id>` branch,
+and `/opsx:sync` runs before `/opsx:archive`.
+A Claude Code session either plans or implements, never both,
+and commits everything it wrote before `/clear`.
+A plan is a commit of its own, and so is a replan.
+A change is planned one of two ways.
 
-**Ahead.**
-Each plan is proposed on `develop` and committed alone,
-and may wait there, unimplemented, until its turn.
-Its implementation is one commit on its own branch:
+**Ahead,**
+for a change that depends on nothing still unlanded.
+The plan is proposed and committed on `develop`,
+and may wait there, unimplemented, until its turn:
 
 ```shell
 git flow feature start <id>    # right before /opsx:apply
-git flow feature finish <id>   # after /opsx:sync, /opsx:archive and the commit
+git flow feature finish <id>   # after /opsx:sync, /opsx:archive and the commits
 ```
 
-**Just in time.**
+**Just in time,**
+for a change that builds on one still in flight.
 The branch comes first,
-and the plan, the code and the archive go in as one commit:
+and the plan is proposed and committed on it:
 
 ```shell
-git flow feature start <id>    # then /opsx:propose "<id>" and /opsx:apply on it
-git flow feature finish <id>   # after /opsx:sync, /opsx:archive and the commit
+git flow feature start <id>    # then /opsx:propose "<id>"; /opsx:apply in the next session
+git flow feature finish <id>   # after /opsx:sync, /opsx:archive and the commits
 ```
 
-Every implementation runs in a clean Claude Code session,
-which is cleared with `/clear` once its branch is finished.
+The implementation lands as one commit or several split by meaning.
+A decision the plan did not make stops it:
+the code is committed as `wip(<id>): …`,
+the decision is replanned in a fresh session,
+and before the finish the `wip` commits are split again by meaning.
 
 Browse specs and changes with `mise exec -- openspec view`.
 
