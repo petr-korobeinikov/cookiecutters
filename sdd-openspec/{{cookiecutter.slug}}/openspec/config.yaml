@@ -18,9 +18,10 @@ context: |
   `type(scope): description`. The scope names the area of code or the
   tracker's task id - `feat(catalog): …`, `fix(PROJ-32): …` - and is left
   out only where nothing narrower than the whole project fits, as in
-  `chore: release 2026.10.0`. The subject is in the imperative mood,
-  lowercase after the prefix, without a closing period, 72 characters at
-  most and 50 where it can be.
+  `chore: release 2026.10.0`. A `wip` commit, which parks a stopped
+  implementation, takes the change id as its scope: `wip(<change-id>): …`.
+  The subject is in the imperative mood, lowercase after the prefix,
+  without a closing period, 72 characters at most and 50 where it can be.
 
   Whether a commit carries a body is the operator's call: ask before the
   first commit of the project's own work - git-flow's `Initial commit` is
