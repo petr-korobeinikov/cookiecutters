@@ -258,5 +258,5 @@ operations:
   archive:
     guidance:
       - "Run `/opsx:sync` before archiving so `openspec/specs/` does not go stale."
-      - "After archiving, close the branch with `git flow feature finish <change-id>`."
+      - "After archiving, commit what is left, split any `wip` commits again by meaning, and close the branch with `git flow feature finish <change-id>` only once the operator has reviewed every commit."
       - "Say what the change left undecided - decisions surfaced while implementing and deliberately deferred - one line each, so the next proposal can pick them up."
