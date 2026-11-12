@@ -12,45 +12,29 @@ as every other tool in `mise.toml` is pinned.
 
 ## Workflow
 
-Each change is one OpenSpec change on its own `feature/<id>` branch,
-and `/opsx:sync` runs before `/opsx:archive`.
+`CLAUDE.md` holds the process; in short:
+
 A Claude Code session either plans or implements, never both,
 and commits everything it wrote before `/clear`.
-A plan is a commit of its own, and so is a replan:
-on `develop` until the change has its branch, on `feature/<id>` from then on.
-A change is planned one of two ways.
 
-**Ahead,**
-when it is planned now and implemented later,
-and only if it depends on nothing still unlanded.
-Each plan is proposed and committed on `develop` alone,
-and may wait there, unimplemented, until its turn:
+**Planning.**
+A plan is one OpenSpec change,
+committed on `develop` alone as `chore(openspec): plan <id>`,
+with no branch of its own.
+Several can be planned at once, one agent per plan;
+a set of changes that depend on each other is better not planned ahead.
 
-```shell
-git flow feature start <id>    # right before /opsx:apply
-git flow feature finish <id>   # after /opsx:sync, /opsx:archive and the commits
-```
-
-**Just in time,**
-when it is implemented right after it is planned,
-and always for a change that builds on one still in flight,
-once that one has landed on `develop`.
-The branch comes first,
-and the plan is proposed and committed on it:
+**Implementation.**
+A change reaches `develop` as one commit with all of it:
+code, tests and, for a planned change, its specs and archived plan.
+A simple change is made right on `develop`;
+a complex one runs on its own branch,
+where commits follow the work until the finish squashes them:
 
 ```shell
-git flow feature start <id>    # then /opsx:propose "<id>"; /opsx:apply in the next session
-git flow feature finish <id>   # after /opsx:sync, /opsx:archive and the commits
+git flow feature start <id>
+git flow feature finish <id> --squash-message "<the subject its proposal names>"
 ```
-
-The implementation lands as one commit or several split by meaning.
-A decision the plan did not make stops it,
-and so does a change wider than its specs:
-the code is committed as `wip(<id>): …`,
-a fresh session replans it —
-the decision made, or the change narrowed and the rest made a change of its own —
-and before the finish the `wip` commits are split again by meaning,
-without the code the narrowed change no longer covers.
 
 Browse specs and changes with `mise exec -- openspec view`.
 

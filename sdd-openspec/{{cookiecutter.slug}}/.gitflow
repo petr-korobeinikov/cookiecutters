@@ -27,7 +27,7 @@
 	type = topic
 	parent = develop
 	startPoint = develop
-	upstreamStrategy = rebase
+	upstreamStrategy = squash
 	downstreamStrategy = rebase
 	prefix = feature/
 	autoUpdate = false
@@ -36,7 +36,7 @@
 	type = topic
 	parent = develop
 	startPoint = develop
-	upstreamStrategy = rebase
+	upstreamStrategy = squash
 	downstreamStrategy = rebase
 	prefix = bugfix/
 	autoUpdate = false
@@ -56,7 +56,7 @@
 	parent = main
 	startPoint = main
 	upstreamStrategy = merge
-	downstreamStrategy = rebase
+	downstreamStrategy = merge
 	prefix = hotfix/
 	autoUpdate = false
 	tag = true

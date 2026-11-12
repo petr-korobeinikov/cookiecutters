@@ -3,47 +3,6 @@ schema: spec-driven
 # Project context. Injected into every artifact instruction and into the
 # apply / archive operations.
 context: |
-  ## Workflow
-
-  Plan every change as an OpenSpec change before writing code, and drive it
-  with the `/opsx:*` commands. One change is one git-flow `feature/` branch
-  sharing its id, and `/opsx:sync` runs before `/opsx:archive`.
-
-  A session either plans or implements, never both, and is cleared (`/clear`)
-  once its work is done. With an Opus-class model, planning runs at effort max
-  and implementation at effort high; every agent a session starts runs at the
-  session's effort.
-
-  Commit messages follow Conventional Commits, in English:
-  `type(scope): description`. The scope names the area of code or the
-  tracker's task id - `feat(catalog): …`, `fix(PROJ-32): …` - and is left
-  out only where nothing narrower than the whole project fits, as in
-  `chore: release 2026.10.0`. A `wip` commit, which parks a stopped
-  implementation, takes the change id as its scope: `wip(<change-id>): …`.
-  The subject is in the imperative mood, lowercase after the prefix,
-  without a closing period, 72 characters at most and 50 where it can be.
-
-  Whether a commit carries a body is the operator's call: ask before the
-  first commit of the project's own work - git-flow's `Initial commit` is
-  not one - and replace this sentence with the answer. Without
-  a body the message is the subject line alone; with one, a blank line
-  separates it from the subject, and trailers, if any, close the message
-  after another blank line. No line credits an AI agent or model in any
-  form - no `Co-Authored-By:` trailer for a machine address, no "Generated
-  with" line; every other trailer is allowed.
-
-  A release is named `YYYY.M.MICRO`: the year, the month without a leading
-  zero, and the count of releases cut earlier that month, from 0. Without
-  the leading zero the name is valid SemVer, and a later release sorts above
-  an earlier one. Its tag is `v` followed by the name - `v2026.10.0`, put by
-  `git flow release finish 2026.10.0`, whose `tagPrefix` is `v` in
-  `.gitflow`. The sources carry the name, never the `v`.
-
-  Generated, never hand-edited: `openspec/` apart from this file, and the
-  `opsx` / `openspec-*` glue under `.claude/`; regenerate them with
-  `mise exec -- openspec update`. General mise / OpenSpec / git-flow usage
-  lives in the skills installed under `.claude/skills/`.
-
   ## Working agreement
 
   The reader is a peer, not a customer: twenty years of backend engineering,
@@ -206,8 +165,8 @@ context: |
   build's content, a test that passes without proving anything, a statement
   that is false - then names, then structure and build, then reuse, then the
   coverage still missing, and last whatever moves a pixel. Each builds on
-  the tree its predecessors leave, so each is planned just in time, once the
-  one before it has landed, and counts its tables on that tree.
+  the tree its predecessors leave, so each is planned only once the one
+  before it has been applied, and counts its tables on that tree.
 
   A rename is proved to be one: every suite's count and the test total
   stand as before, version control shows each moved file as a rename, and a
@@ -220,7 +179,10 @@ context: |
 # Per-artifact rules, additive to the schema's own guidance.
 rules:
   proposal:
-    - "Use a kebab-case change id that is also a valid git branch name; it becomes `feature/<id>`."
+    - "Use a kebab-case change id that is also a valid git branch name; implemented on a branch, the change takes it as `feature/<id>`."
+    - "Say in one line how hard the change is - relatively simple, complex, or needing very deep study - and why: a simple change is implemented on `develop`, any other on `feature/<id>`."
+    - "Name the queued plans the change builds on, in apply order, or say it builds on `develop` alone."
+    - "Name the subject the change will land on `develop` with, in the Conventional Commits form `CLAUDE.md` gives - `feat(catalog): add a price filter`."
     - "Name every unmade decision the change rests on and propose it in Why; a proposal that quietly assumes one is not ready."
     - "If the Capabilities section cannot be delivered inside the spec budget, propose several changes instead of one and say in Why which one comes first."
     - "Why opens with one paragraph: the problem, its evidence in numbers or names, and why now. Decisions follow as bullets."
@@ -229,6 +191,8 @@ rules:
     - "A spec whose requirements will not fit the budget is split along capability boundaries - the overflow becomes its own spec, or its own change when it carries tasks of its own."
     - "Every requirement must be verifiable as written; if the check cannot be named, the requirement is not specific enough yet."
     - "State the behavior, not the API that renders it: a requirement naming a UI framework type or a platform SDK belongs in design instead."
+    - "A requirement a queued plan also changes is MODIFIED from that plan's text, carried whole."
+    - "A spec that creates a capability opens with its `## Purpose`, 50 characters at least: the archive writes it into the new main spec, and `--strict` refuses the placeholder written otherwise."
   design:
     - "Say which layer the behavior lands in - the core, the UI above it, or platform-specific code."
     - "Anything placed in platform-specific code carries the reason it cannot be shared; being easier to write there is not one."
@@ -243,12 +207,12 @@ rules:
     - "Keep each task independently verifiable - it ends with a green suite, not with work left dangling for the next task."
     - "Name how each task is checked - the command to run or the observation that proves it done; a task with no check is not a task."
     - "A task is a step and its check in at most 60 words; its reason lives in the design, and the task points there."
+    - "A count the queued plans change, such as a test total, is the base plus their deltas, marked expected."
 
 # Per-operation advisory guidance. Only `apply` and `archive` are supported.
 operations:
   apply:
     guidance:
-      - "Implement on the change's git-flow branch; if it does not exist yet, run `git flow feature start <change-id>` before the first task."
       - "Run red-green-refactor per task: write the test, run it and see it fail for the right reason, then write the code that makes it pass."
       - "Red-green-refactor is the rule for the business logic; a UI component that only renders the state it is handed is not held to it, and a UI component that needs a test of its own is one holding logic that belongs in the core."
       - "Tests for the core run on the host; needing a simulator or a device to check core behavior is a signal the logic sits in the wrong layer."
@@ -258,6 +222,4 @@ operations:
       - "Under a finished task, write only what the diff cannot show: numbers measured, deviations from the plan, decisions surfaced and who made them."
   archive:
     guidance:
-      - "Run `/opsx:sync` before archiving so `openspec/specs/` does not go stale."
-      - "After archiving, commit what is left, split any `wip` commits again by meaning, and close the branch with `git flow feature finish <change-id>` only once the operator has reviewed every commit."
       - "Say what the change left undecided - decisions surfaced while implementing and deliberately deferred - one line each, so the next proposal can pick them up."

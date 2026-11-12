@@ -10,3 +10,6 @@
 
 # Runtime state written by the harness (scheduled tasks, etc.) — never commit.
 /*.lock
+
+# Agents' worktrees for planning several changes at once — never commit.
+/worktrees/

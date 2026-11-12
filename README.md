@@ -24,7 +24,7 @@ it materializes the pinned toolchain
 (Node — LTS — for the OpenSpec CLI, the OpenSpec CLI itself, git-flow-next, and prek),
 runs `openspec init --tools claude`,
 initializes the classic Gitflow branch model
-(`main` + `develop`, feature branches rebased onto `develop`),
+(`main` + `develop`, feature and bugfix branches squashed onto `develop`),
 and installs the [prek](https://prek.j178.dev/) pre-commit and commit-msg hooks
 (prek's built-in file-hygiene checks,
 a 72-character limit on the commit subject,

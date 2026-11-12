@@ -31,7 +31,7 @@ mise exec -- openspec init --tools claude --force || warn "openspec init failed"
 
 # git + git-flow-next.
 # The branch model itself ships in the committed .gitflow (feature and bugfix branches
-# rebased on finish, their commits kept), so it survives cloning — .git/config does not.
+# squashed into one commit on finish), so it survives cloning — .git/config does not.
 # `init --force` only lays down main + develop and leaves .gitflow untouched;
 # `config sync` then copies the shipped model into .git/config.
 git rev-parse --is-inside-work-tree >/dev/null 2>&1 || git init -q || warn "git init failed"
