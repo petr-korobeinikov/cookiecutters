@@ -5,7 +5,7 @@ lockfile = true
 [tools]
 node = "26.13.1"
 "aqua:gittower/git-flow-next" = "2.1.0"
-"aqua:j178/prek" = "0.5.4"
+"aqua:j178/prek" = "0.5.10"
 "npm:@fission-ai/openspec" = "2.0.0"
 
 [env]
