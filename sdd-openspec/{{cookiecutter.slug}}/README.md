@@ -6,9 +6,6 @@ Spec-driven development on [OpenSpec](https://github.com/Fission-AI/OpenSpec),
 driven from Claude Code via the `/opsx:*` commands — no other AI-tool integration.
 `cookiecutter` wired up the toolchain ([mise](https://mise.jdx.dev)),
 OpenSpec, git-flow-next, and prek on generation.
-The template asked mise for Node's `lts`;
-the post-gen hook pinned the version it resolved to, in full,
-as every other tool in `mise.toml` is pinned.
 
 ## Workflow
 
