@@ -3,7 +3,7 @@
 > {{cookiecutter.description}}
 
 Spec-driven development on [OpenSpec](https://github.com/Fission-AI/OpenSpec),
-driven from Claude Code via the `/opsx:*` commands — no other AI-tool integration.
+driven from Claude Code via the `openspec-*` skills — no other AI-tool integration.
 `cookiecutter` wired up the toolchain ([mise](https://mise.jdx.dev)),
 OpenSpec, git-flow-next, and prek on generation.
 

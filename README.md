@@ -18,7 +18,7 @@ cookiecutter https://github.com/petr-korobeinikov/cookiecutters/ --directory sdd
 
 Scaffolds a spec-driven-development project built on [OpenSpec](https://github.com/Fission-AI/OpenSpec),
 driven entirely through Claude Code
-(the `/opsx:*` commands and `openspec-*` skills — no other AI-tool integration).
+(the `openspec-*` skills — no other AI-tool integration).
 A post-generation hook stands the project up automatically via [mise](https://mise.jdx.dev):
 it materializes the pinned toolchain
 (Node — LTS — for the OpenSpec CLI, the OpenSpec CLI itself, git-flow-next, and prek),

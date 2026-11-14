@@ -23,7 +23,7 @@ mise exec -- npx skills add petr-korobeinikov/skills --skill '*' --copy --agent 
 	|| echo "post-gen: skills install failed — see README.md to install them." >&2
 
 # OpenSpec — Claude only.
-# Generates openspec/ + .claude/commands/opsx + .claude/skills/openspec-*.
+# Generates openspec/ + .agents/skills/openspec-* + the links to them in .claude/skills/.
 mise exec -- openspec init --tools claude --force || warn "openspec init failed"
 
 # git + git-flow-next.
